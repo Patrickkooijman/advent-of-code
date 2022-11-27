@@ -1,4 +1,4 @@
-import {challengeOneHandler, challengeTwo, challengeTwoHandler} from "./";
+import {challengeOneHandler, challengeTwoHandler} from "./";
 
 describe('day 1', () => {
     describe('challenge one', () => {
