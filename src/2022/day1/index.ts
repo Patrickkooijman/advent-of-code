@@ -1,30 +1,30 @@
 import fetch from '../input/fetch'
 
-export const challengeOne = (): Promise<string> => fetch("1").then(challengeOneHandler).then(res => `Day 3, challenge 1: ${res}`);
+export const challengeOne = (): Promise<string> => fetch('1').then(challengeOneHandler).then(res => `Day 1, challenge 1: ${res}`);
 
 export function challengeOneHandler(input: string): number {
-    return input.split('').reduce((acc: number, cur: string) => {
-        if (cur === '(') {
-            return acc + 1;
-        }
-        return acc - 1;
-    }, 0);
+    return Math.max(...toValues(input));
 }
 
-export const challengeTwo = (): Promise<string> => fetch("1").then(challengeTwoHandler).then(res => `Day 3, challenge 1: ${res}`);
+export const challengeTwo = (): Promise<string> => fetch("1").then(challengeTwoHandler).then(res => `Day 1, challenge 1: ${res}`);
 
 export function challengeTwoHandler(input: string): number {
-    let currentFloor: number = 0;
+    const values: Array<number> = toValues(input);
 
-    return input.split('').findIndex((value: string): boolean => {
-        if (value === '(') {
-            currentFloor++;
+    return values.sort((a, b) => b - a).slice(0, 3).reduce((a, b) => a + b, 0);
+}
+
+function toValues(input: string ): Array<number> {
+    let currIndex: number = 0;
+
+    return  input.split('\n').reduce((acc: Array<number>, cur: string) => {
+        if (cur === '') {
+            currIndex++;
         } else {
-            currentFloor--
+            acc[currIndex] = (acc[currIndex] || 0) + parseInt(cur);
         }
-
-        return currentFloor === -1;
-    }) + 1;
+        return acc;
+    }, []);
 }
 
 export default {
