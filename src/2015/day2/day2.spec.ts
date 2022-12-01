@@ -1,4 +1,4 @@
-import {challengeOneHandler, challengeTwoHandler} from "./";
+import {challengeOneHandler, challengeTwoHandler} from "./index";
 
 
 describe('day 2', () => {

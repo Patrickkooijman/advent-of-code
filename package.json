@@ -4,8 +4,10 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "test": "jest --watch .",
-    "dev": "tsc --watch & nodemon --experimental-specifier-resolution=node  js/main.js"
+    "test": "jest --watch src/",
+    "test:2022": "jest --watch src/2022",
+    "dev:2015": "tsc --watch & nodemon --experimental-specifier-resolution=node  js/2015/main.js",
+    "dev:2022": "tsc --watch & nodemon --experimental-specifier-resolution=node  js/2022/main.js"
   },
   "keywords": [],
   "author": "",
