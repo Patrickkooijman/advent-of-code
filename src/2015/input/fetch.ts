@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default async function fetch(day: string) : Promise<string> {
+export default async function fetch(day: string | number) : Promise<string> {
     try {
         const { data } = await axios.get<string>(
             `https://adventofcode.com/2015/day/${day}/input`,
