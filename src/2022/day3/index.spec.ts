@@ -1,9 +1,9 @@
-import { challengeOneHandler, challengeTwoHandler } from "./index";
+import { Day3 } from "./index";
 
 describe('day 3', () => {
     describe('challenge one', () => {
         test('should result in 157', () => {
-            expect(challengeOneHandler(`vJrwpWtwJgWrhcsFMMfFFhFp
+            expect(new Day3().challengeOneHandler(`vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
 PmmdzqPrVvPwwTWBwg
 wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
@@ -14,7 +14,7 @@ CrZsJsPPZsGzwwsLwLmpwMDw`)).toBe(157);
 
     describe('challenge two', () => {
         test('should result in 70', () => {
-            expect(challengeTwoHandler(`vJrwpWtwJgWrhcsFMMfFFhFp
+            expect(new Day3().challengeTwoHandler(`vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
 PmmdzqPrVvPwwTWBwg
 wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn

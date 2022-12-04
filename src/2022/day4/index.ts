@@ -1,6 +1,6 @@
 import Day from '../../shared/Day';
 
-export class Day3 extends Day {
+export class Day4 extends Day {
     day: number = 4;
     year = 2022;
 
@@ -10,7 +10,7 @@ export class Day3 extends Day {
             .filter(Boolean)
             .map((bag: string): ItemsInBag => [bag.split('').splice(bag.length / 2), bag.split('').slice(0, bag.length / 2)])
             .map(([bagOne = [], bagTwo = []]: string[][]) => bagOne.find(item => bagTwo.includes(item)))
-            .map((item: string = "!"): number => Day3.valueItemInBag(item))
+            .map((item: string = "!"): number => Day4.valueItemInBag(item))
             .reduce((acc: number, curr: number): number => acc + curr, 0);
     }
 
@@ -20,12 +20,12 @@ export class Day3 extends Day {
             .filter(Boolean)
             .map(i => i.split(''));
 
-        return Day3.spliceIntoChunks(bags, 3)
+        return Day4.spliceIntoChunks(bags, 3)
             .map((group: string[][] = []): string =>
                 (group.at(0) || []).find(item =>
                     (group.at(1) || []).includes(item)
                     &&  (group.at(2) || []).includes(item)) || "!")
-            .map((item: string = "!"): number => Day3.valueItemInBag(item))
+            .map((item: string = "!"): number => Day4.valueItemInBag(item))
             .reduce((acc: number, curr: number): number => acc + curr, 0);
     }
 

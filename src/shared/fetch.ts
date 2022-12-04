@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export default async function fetch(day: string | number) : Promise<string> {
+export default async function fetch(day: string | number, year: number = 2022) : Promise<string> {
     try {
         const { data } = await axios.get<string>(
-            `https://adventofcode.com/2022/day/${day}/input`,
+            `https://adventofcode.com/${year}/day/${day}/input`,
             {
                 headers: {
                     cookie: "session=53616c7465645f5ff501a15dbc415c9e3f80281acf5eba78e1807b25d9b704acc57099f3e592bd89ed7ac1c9eb38dd940ff47264b7620e7a2edfebc403d71aef;"

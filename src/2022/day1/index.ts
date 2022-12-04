@@ -1,31 +1,27 @@
-import fetch from '../input/fetch'
+import Day from "../../shared/Day";
 
-export const challengeOne = (): Promise<string> => fetch('1').then(challengeOneHandler).then(res => `Day 1, challenge 1: ${res}`);
+export class Day1 extends Day {
+    day: number = 1;
+    year = 2022;
 
-export const challengeOneHandler = (input: string): number => Math.max(...toValues(input));
+    challengeOneHandler = (input: string): number => Math.max(...this.toValues(input));
 
-export const challengeTwo = (): Promise<string> => fetch("1").then(challengeTwoHandler).then(res => `Day 1, challenge 2: ${res}`);
+    challengeTwoHandler = (input: string): number => {
+        const values: Array<number> = this.toValues(input);
 
-export const challengeTwoHandler = (input: string): number =>  {
-    const values: Array<number> = toValues(input);
+        return values.sort((a, b) => b - a).slice(0, 3).reduce((a, b) => a + b, 0);
+    }
 
-    return values.sort((a, b) => b - a).slice(0, 3).reduce((a, b) => a + b, 0);
-}
+    toValues(input: string): Array<number> {
+        let currIndex: number = 0;
 
-function toValues(input: string ): Array<number> {
-    let currIndex: number = 0;
-
-    return  input.split('\n').reduce((acc: Array<number>, cur: string) => {
-        if (cur === '') {
-            currIndex++;
-        } else {
-            acc[currIndex] = (acc[currIndex] || 0) + parseInt(cur);
-        }
-        return acc;
-    }, []);
-}
-
-export default {
-    challengeOne,
-    challengeTwo,
+        return input.split('\n').reduce((acc: Array<number>, cur: string) => {
+            if (cur === '') {
+                currIndex++;
+            } else {
+                acc[currIndex] = (acc[currIndex] || 0) + parseInt(cur);
+            }
+            return acc;
+        }, []);
+    }
 }
