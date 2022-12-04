@@ -1,7 +1,7 @@
 import Day from '../../shared/Day';
 
 export class Day3 extends Day {
-    day: number = 4;
+    day: number = 3;
     year = 2022;
 
     challengeOneHandler(input: string): number {

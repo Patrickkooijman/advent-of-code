@@ -4,7 +4,7 @@ export class Day2 extends Day {
     day: number = 2;
     year = 2022;
 
-    challengeOneHandler(input: string): number {
+    challengeOneHandler = (input: string): number => {
         return input
             .split(('\n'))
             .map(round => round.split(""))
@@ -15,7 +15,7 @@ export class Day2 extends Day {
                 acc + GameScore[this.toGameResult(opponent, player)] + ShapeScore[player], 0);
     }
 
-    challengeTwoHandler(input: string): number {
+    challengeTwoHandler = (input: string): number => {
         return input
             .split(('\n'))
             .map(round => round.split(""))
@@ -26,7 +26,7 @@ export class Day2 extends Day {
                 acc + GameScore[result] + ShapeScore[this.toExpectedShape(opponent, result)], 0);
     }
 
-    toGameResult(opponent: Shape, player: Shape): GameResult {
+    toGameResult = (opponent: Shape, player: Shape): GameResult => {
         switch (true) {
             case opponent === Shape.Rock && player === Shape.Paper:
                 return GameResult.WIN;
