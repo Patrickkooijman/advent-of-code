@@ -19,6 +19,6 @@ export default abstract class Day {
     private challengeTwo = (): Promise<any> => this.input().then(this.challengeTwoHandler).then(res => this.log(2, res));
     private log = (challenge: number, result: string | number): void => console.log(`Day ${this.day}, challenge ${challenge}: ${result}`);
 
-    abstract challengeOneHandler(input: string): number;
-    abstract challengeTwoHandler(input: string): number;
+    abstract challengeOneHandler(input: string): number | string;
+    abstract challengeTwoHandler(input: string): number | string;
 }
