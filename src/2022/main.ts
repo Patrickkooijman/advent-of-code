@@ -8,6 +8,7 @@ import { Day6 } from './day6';
 import Day7 from './day7';
 import Day8 from './day8';
 import Day9 from './day9';
+import Day10 from './day10';
 
 const days: Array<Day> = [
     new Day1(),
@@ -19,6 +20,7 @@ const days: Array<Day> = [
     new Day7(),
     new Day8(),
     new Day9(),
+    new Day10(),
 ];
 
 await Promise.all(days.map(cl => cl.execute()));
