@@ -21,7 +21,7 @@ export default class Day7 extends Day {
 
         return this.findSmallestFolder(this.root).size;
     };
-    private parseInput = (input: string): void => {
+    parseInput = (input: string): void => {
         let activeDir: Folder = this.root;
 
         input.split('\n')

@@ -63,7 +63,7 @@ export default class Day10 extends Day {
         return '\n' + this.splitToLines(board).join('\n');
     }
 
-    private parseInput = (input: string): Array<Instruction> =>
+    parseInput = (input: string): Array<Instruction> =>
         input
             .split('\n')
             .filter(Boolean)

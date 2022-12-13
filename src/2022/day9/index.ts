@@ -7,7 +7,7 @@ export default class Day9 extends Day {
     challengeOneHandler = (input: string): number => this.calculateTouchedFields(input, 1);
     challengeTwoHandler = (input: string): number => this.calculateTouchedFields(input, 9);
 
-    private parseInput = (input: string): Action[] => {
+    parseInput = (input: string): Action[] => {
         return input
             .split('\n')
             .filter(Boolean)

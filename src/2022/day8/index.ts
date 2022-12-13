@@ -15,7 +15,7 @@ export default class Day8 extends Day {
         return Math.max(...trees.flatMap(t => t).map(tree => this.scenicScore(tree, trees)));
     };
 
-    private parseInput = (input: string): Tree[][] => {
+    parseInput = (input: string): Tree[][] => {
         return input
             .split('\n')
             .map((line: string, yPos: number) =>
