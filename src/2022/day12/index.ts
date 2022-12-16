@@ -3,89 +3,76 @@ import Day from '../../shared/Day';
 export default class Day12 extends Day {
     day: number = 12;
     year: number = 2022;
+    challengeOneHandler = (input: string): number => {
+        const nodes: Node[] = this.parseInput(input)
+        const start: Node = nodes.find((node: Node): boolean => node.name === 'S')!;
+        const end: Node = nodes.find((node: Node): boolean => node.name === 'E')!;
+        return this.bfs(start, end, nodes)
+    }
 
-    challengeOneHandler = (input: string): number => this.bfs(this.parseInput(input));
+    challengeTwoHandler = (input: string): number => {
+        const nodes: Node[] = this.parseInput(input)
+        const start: Node[] = nodes.filter((node: Node): boolean => ['S', 'a'].includes(node.name))!;
+        const end: Node = nodes.find((node: Node): boolean => node.name === 'E')!;
+        return Math.min(...start.map((startNode: Node) => {
+            nodes.forEach((node: Node) => {
+                node.distance = 0;
+                node.visited = false;
+            });
 
-    challengeTwoHandler = (input: string): number => this.bfs(this.parseInput(input));
+            return  this.bfs(startNode, end, nodes)
+        }).filter(Boolean));
+    }
 
-    private bfs = (grid: Grid) : number => {
-        const { start, end, nodes } = grid
-        start.visited = true;
+    private bfs = (start: Node, end: Node, nodes: Node[]) : number => {
         const queue = [start];
         let current: Node;
 
-        do {
+        while (queue.length) {
             current = queue.shift()!
-            console.log({
-                current,
-                l: queue.length
-            })
+            if (current.value === end.value) return current.distance;
 
+            current.visited = true;
             const neighbors = this.findNeighbors(nodes, current);
             queue.push(...neighbors.map(n => {
                 n.visited = true;
                 n.distance = current.distance + 1;
-
                 return n;
             }));
-
         }
-        while (queue.length && current !== end);
-
-        return end.distance;
+        return 0;
     }
 
     private findNeighbors = (nodes: Array<Node>, current: Node): Array<Node> => {
         const { x, y, value } = current;
-        const candidates = [{ x, y: y - 1},
-            { x, y: y + 1},
-            { x: x - 1, y },
-            { x: x + 1, y}];
+        const candidates = [{ x, y: y - 1}, { x, y: y + 1}, { x: x - 1, y }, { x: x + 1, y}];
 
         return nodes
-            .filter(({ x: nx, y: ny, value: nvalue, visited }: Node): boolean => !visited && (value === nvalue || value + 1 === nvalue) &&
+            .filter(({ x: nx, y: ny, value: nvalue, visited }: Node): boolean => !visited && nvalue <= value + 1 &&
         candidates.some(({ x, y }) => x === nx && y === ny));
     }
 
-    private parseInput = (input: string): Grid => {
-        let start: Node, end: Node;
+    private parseInput = (input: string): Node[] => {
         const alphabet = 'SabcdefghijklmnopqrstuvwxyzE';
-
-        const nodes = input.split('\n').flatMap((line: string, y: number): Array<Node> => {
-           return  line.split('').map((d: string, x: number): Node => {
-                const node: Node = {
-                    value: alphabet.indexOf(d),
+        return input.split('\n').flatMap((line: string, y: number): Array<Node> =>
+             line.split('').map((name: string, x: number): Node =>
+               ({
+                    value: alphabet.indexOf(name),
                     x,
                     y,
                     distance: 0,
                     visited: false,
-                };
-
-                if (d === 'S') start = node;
-                if (d === 'E') end = node;
-
-                return node;
-            })
-        });
-
-        return {
-            start: start!,
-            end: end!,
-            nodes,
+                    name
+                })));
         };
-    }
-}
 
-interface Grid {
-    start: Node
-    end: Node
-    nodes: Array<Node>
 }
 
 interface Node {
     x: number
     y: number
     value: number
+    name: string
     distance: number
     visited: boolean;
 }
