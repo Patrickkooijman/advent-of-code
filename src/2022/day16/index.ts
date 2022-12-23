@@ -1,109 +1,65 @@
 import Day from '../../shared/Day';
 
-export default class Day15 extends Day {
-    day: number = 15;
+export default class Day16 extends Day {
+    day: number = 16;
     year: number = 2022;
-    constructor(private yLine: number, private maxDistress: number | undefined) {
-        super();
-    }
     challengeOneHandler = (input: string): number => {
-        const data: Data = this.parseInput(input);
-        let counter: number = 0;
+        const valves: Map<string, Valve> = this.parseInput(input);
 
-        for (let i: number = data.minX; i <= data.maxX; i++) {
-            if (this.doesIntersect(i, this.yLine, data.signals)){
-                counter++;
+        let pressure: number = 0;
+        let totalPressure: number = 0;
+        let minutesSpent: number = 0;
+        let currentValve: Valve = valves.get('AA')!;
+
+        while (minutesSpent < 30) {
+            if (currentValve.opened || !currentValve.rate) {
+                currentValve = currentValve.leads.reduce((acc, curr): Valve => !acc ? curr : curr.rate > acc.rate ? curr : acc);
             }
+
+            totalPressure += pressure;
+            minutesSpent++;
         }
 
-        return counter;
+        return totalPressure;
     }
     challengeTwoHandler = (input: string): number => {
-        const data: Data = this.parseInput(input);
-        const frequencyMultiplyer: number = 4_000_000;
+        return input ? 0 : 0;
+    };
 
-        for (let x: number = 0; x <= this.maxDistress!; x++) {
-            for (let y: number = 0; y <= this.maxDistress!; y++) {
-                if (this.isUnknownSector(x, y, data.signals)) {
-                    return x * frequencyMultiplyer + y;
-                }
-            }
+    private getOrAddValve = (name: string, valves: Map<string, Valve>): Valve => {
+        if (valves.has(name)) {
+            return valves.get(name)!;
         }
 
-        return 0;
-    };
-
-    private isUnknownSector = (atXPos: number, atYPos: number, signals: Signal[]): boolean => {
-        const isBeacon = signals.some((signal: Signal): boolean => signal.beaconY === atYPos && signal.beaconX === atXPos);
-        const isSensor = signals.some((signal: Signal): boolean => signal.sensorY === atYPos && signal.sensorX === atXPos);
-        const hitsPoint = signals.some((signal: Signal): boolean => {
-            return Math.abs(signal.sensorX - atXPos) + Math.abs(signal.sensorY - atYPos) <= signal.distance;
-        });
-
-        return !isBeacon && !isSensor && !hitsPoint;
-    }
-
-    private doesIntersect = (atXPos: number, atYPos: number, signals: Signal[]): boolean => {
-        const isBeacon = signals.some((signal: Signal): boolean => signal.beaconY === atYPos && signal.beaconX === atXPos);
-        const hitsPoint = signals.some((signal: Signal): boolean => {
-            return Math.abs(signal.sensorX - atXPos) + Math.abs(signal.sensorY - atYPos) <= signal.distance;
-        });
-
-        return !isBeacon && hitsPoint
-    }
-
-    private parseInput = (input: string): Data => {
-        let minX: number = Number.MAX_VALUE;
-        let maxX: number = Number.MIN_VALUE
-        let minY: number = Number.MAX_VALUE;
-        let maxY: number = Number.MIN_VALUE;
-
-        const signals: Array<Signal> = input
-          .split('\n')
-          .map(line => line.match(/^.+x=(-*\d+),\sy=(-*\d+):.+x=(-*\d+),\sy=(-*\d+)/)
-              ?.slice(1, 5)?.map(Number))
-          .map(([sensorX = 0, sensorY = 0, beaconX = 0, beaconY = 0]: number[] = []): Signal => {
-              const distance = Math.abs(sensorX - beaconX) + Math.abs(sensorY - beaconY);
-              minX = Math.min(minX - distance, sensorX, beaconX);
-              maxX = Math.max(maxX + distance, sensorX, beaconX);
-              minY = Math.min(minY, sensorY, beaconY);
-              maxY = Math.max(maxY, sensorY, beaconY);
-
-              return {
-                  distance,
-                  sensorX,
-                  sensorY,
-                  beaconX,
-                  beaconY
-              }
-          });
-
-        return {
-            signals,
-            minX,
-            maxX,
-            minY,
-            maxY
+        const valve = {
+            name,
+            rate: 0,
+            opened: false,
+            leads: []
         };
-    };
+
+        valves.set(name, valve)
+        return valve;
+    }
+
+    private parseInput = (input: string): Map<string, Valve> => {
+        const valves: Map<string, Valve> = new Map();
+
+        input.split('\n')
+            .forEach((line: string): void => {
+                const [_, name = "", rate = "", leads = "" ] = line.match(/Valve\s([A-Z]{2}).*=(\d+).*valves\s(.*)/)!;
+                const valve = this.getOrAddValve(name, valves);
+                valve.rate = Number(rate);
+                valve.leads = leads.split(',').map(s => s.trim()).map(n => this.getOrAddValve(n, valves));
+            });
+
+        return valves;
+    }
 }
 
-// interface Point2D {
-//     x: number;
-//     y: number;
-// }
-interface Signal {
-    sensorX: number,
-    sensorY: number,
-    beaconX: number,
-    beaconY: number;
-    distance: number;
-}
-
-interface Data {
-    signals: Array<Signal>,
-    minX: number;
-    maxX: number;
-    minY: number;
-    maxY: number;
+interface Valve {
+    name: string;
+    opened: boolean;
+    rate: number;
+    leads: Valve[],
 }
