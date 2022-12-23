@@ -6,6 +6,7 @@ export default class Day15 extends Day {
     constructor(private yLine: number, private maxDistress: number | undefined) {
         super();
     }
+
     challengeOneHandler = (input: string): number => {
         const data: Data = this.parseInput(input);
         let counter: number = 0;
@@ -20,12 +21,26 @@ export default class Day15 extends Day {
     }
     challengeTwoHandler = (input: string): number => {
         const data: Data = this.parseInput(input);
-        const frequencyMultiplyer: number = 4_000_000;
+        const frequencyMultiplier: number = 4_000_000;
 
-        for (let x: number = 0; x <= this.maxDistress!; x++) {
-            for (let y: number = 0; y <= this.maxDistress!; y++) {
-                if (this.isUnknownSector(x, y, data.signals)) {
-                    return x * frequencyMultiplyer + y;
+        for (const signal of data.signals) {
+            const {distance, sensorX, sensorY} = signal;
+            const border = distance + 1;
+            for (let i: number = 0; i <= border; i++) {
+                const coords = [
+                    {x: sensorX - i, y: sensorY + border - i},
+                    {x: sensorX + i, y: sensorY + border - i},
+                    {x: sensorX + i, y: sensorY - border + i},
+                    {x: sensorX - i, y: sensorY - border + i},
+                ];
+
+                for (const coord of coords)  {
+                    const { x, y } = coord;
+                    if (!(x < 0 || x > this.maxDistress! || y < 0 || y > this.maxDistress!)) {
+                        if (this.isUnknownSector(x, y, data.signals)) {
+                            return x * frequencyMultiplier + y;
+                        }
+                    }
                 }
             }
         }
@@ -59,24 +74,24 @@ export default class Day15 extends Day {
         let maxY: number = Number.MIN_VALUE;
 
         const signals: Array<Signal> = input
-          .split('\n')
-          .map(line => line.match(/^.+x=(-*\d+),\sy=(-*\d+):.+x=(-*\d+),\sy=(-*\d+)/)
-              ?.slice(1, 5)?.map(Number))
-          .map(([sensorX = 0, sensorY = 0, beaconX = 0, beaconY = 0]: number[] = []): Signal => {
-              const distance = Math.abs(sensorX - beaconX) + Math.abs(sensorY - beaconY);
-              minX = Math.min(minX - distance, sensorX, beaconX);
-              maxX = Math.max(maxX + distance, sensorX, beaconX);
-              minY = Math.min(minY, sensorY, beaconY);
-              maxY = Math.max(maxY, sensorY, beaconY);
+            .split('\n')
+            .map(line => line.match(/^.+x=(-*\d+),\sy=(-*\d+):.+x=(-*\d+),\sy=(-*\d+)/)
+                ?.slice(1, 5)?.map(Number))
+            .map(([sensorX = 0, sensorY = 0, beaconX = 0, beaconY = 0]: number[] = []): Signal => {
+                const distance = Math.abs(sensorX - beaconX) + Math.abs(sensorY - beaconY);
+                minX = Math.min(minX - distance, sensorX, beaconX);
+                maxX = Math.max(maxX + distance, sensorX, beaconX);
+                minY = Math.min(minY, sensorY, beaconY);
+                maxY = Math.max(maxY, sensorY, beaconY);
 
-              return {
-                  distance,
-                  sensorX,
-                  sensorY,
-                  beaconX,
-                  beaconY
-              }
-          });
+                return {
+                    distance,
+                    sensorX,
+                    sensorY,
+                    beaconX,
+                    beaconY
+                }
+            });
 
         return {
             signals,
