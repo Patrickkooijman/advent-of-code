@@ -1,25 +1,29 @@
-import { Day3 } from "./index";
+import { Day3 } from './index';
 
 describe('day 3', () => {
-    describe('challenge one', () => {
-        test('should result in 157', () => {
-            expect(new Day3().challengeOneHandler(`vJrwpWtwJgWrhcsFMMfFFhFp
+  describe('challenge one', () => {
+    test('should result in 157', () => {
+      expect(
+        new Day3().challengeOneHandler(`vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
 PmmdzqPrVvPwwTWBwg
 wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
 ttgJtRGJQctTZtZT
-CrZsJsPPZsGzwwsLwLmpwMDw`)).toBe(157);
-        });
+CrZsJsPPZsGzwwsLwLmpwMDw`)
+      ).toBe(157);
     });
+  });
 
-    describe('challenge two', () => {
-        test('should result in 70', () => {
-            expect(new Day3().challengeTwoHandler(`vJrwpWtwJgWrhcsFMMfFFhFp
+  describe('challenge two', () => {
+    test('should result in 70', () => {
+      expect(
+        new Day3().challengeTwoHandler(`vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
 PmmdzqPrVvPwwTWBwg
 wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
 ttgJtRGJQctTZtZT
-CrZsJsPPZsGzwwsLwLmpwMDw`)).toBe(70);
-        });
+CrZsJsPPZsGzwwsLwLmpwMDw`)
+      ).toBe(70);
     });
+  });
 });

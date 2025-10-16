@@ -1,4 +1,4 @@
-import Day from "../shared/Day";
+import Day from '../shared/Day';
 import { Day1 } from './day1';
 import { Day2 } from './day2';
 import { Day3 } from './day3';
@@ -17,38 +17,35 @@ import Day15 from './day15';
 import Day16 from './day16';
 
 const days: Array<Day> = [
-    new Day1(),
-    new Day2(),
-    new Day3(),
-    new Day4(),
-    new Day5(),
-    new Day6(),
-    new Day7(),
-    new Day8(),
-    new Day9(),
-    new Day10(),
-    new Day11(),
-    new Day12(),
-    new Day13(),
-    new Day14(),
-    new Day15(2_000_000, 4_000_000),
-    new Day16()
+  new Day1(),
+  new Day2(),
+  new Day3(),
+  new Day4(),
+  new Day5(),
+  new Day6(),
+  new Day7(),
+  new Day8(),
+  new Day9(),
+  new Day10(),
+  new Day11(),
+  new Day12(),
+  new Day13(),
+  new Day14(),
+  new Day15(2_000_000, 4_000_000),
+  new Day16(),
 ];
 
 const execute = async (days: Day[]) => {
-    await Promise.all(days.map(cl => cl.execute())).then(results => results.map(result => console.log(result)));
+  await Promise.all(days.map(cl => cl.execute())).then(results =>
+    results.map(result => console.log(result))
+  );
+};
 
-}
-
-const [ day ] = process.argv.slice(2);
+const [day] = process.argv.slice(2);
 
 if (day) {
-    const challenge: Day | undefined = days[Number(day) - 1];
-    await execute([  challenge! ] )
+  const challenge: Day | undefined = days[Number(day) - 1];
+  await execute([challenge!]);
 } else {
-    await execute(days);
+  await execute(days);
 }
-
-
-
-

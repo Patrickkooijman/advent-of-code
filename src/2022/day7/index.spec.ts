@@ -1,8 +1,9 @@
 import Day from './index';
 describe('day 7', () => {
-    describe('challenge one', () => {
-        test('should result in 95437', () => {
-            expect(new Day().challengeOneHandler(`$ cd /
+  describe('challenge one', () => {
+    test('should result in 95437', () => {
+      expect(
+        new Day().challengeOneHandler(`$ cd /
 $ ls
 dir a
 14848514 b.txt
@@ -24,13 +25,14 @@ $ ls
 4060174 j
 8033020 d.log
 5626152 d.ext
-7214296 k`)).toBe(95437);
-        });
+7214296 k`)
+      ).toBe(95437);
     });
-    describe('challenge two', () => {
-        test('should result in 24933642', () => {
-
-            expect(new Day().challengeTwoHandler(`$ cd /
+  });
+  describe('challenge two', () => {
+    test('should result in 24933642', () => {
+      expect(
+        new Day().challengeTwoHandler(`$ cd /
 $ ls
 dir a
 14848514 b.txt
@@ -52,7 +54,8 @@ $ ls
 4060174 j
 8033020 d.log
 5626152 d.ext
-7214296 k`)).toBe(24933642);
-        });
+7214296 k`)
+      ).toBe(24933642);
     });
+  });
 });

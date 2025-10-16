@@ -1,8 +1,9 @@
 import Day from './index';
 describe('day 11', () => {
-    describe('challenge one', () => {
-        test('should result in 10605', () => {
-            expect(new Day().challengeOneHandler(`Monkey 0:
+  describe('challenge one', () => {
+    test('should result in 10605', () => {
+      expect(
+        new Day().challengeOneHandler(`Monkey 0:
   Starting items: 79, 98
   Operation: new = old * 19
   Test: divisible by 23
@@ -28,13 +29,15 @@ Monkey 3:
   Operation: new = old + 3
   Test: divisible by 17
     If true: throw to monkey 0
-    If false: throw to monkey 1`)).toBe(10605);
-        });
+    If false: throw to monkey 1`)
+      ).toBe(10605);
     });
+  });
 
-    describe('challenge two', () => {
-        test('should result in 2713310158', () => {
-            expect(new Day().challengeTwoHandler(`Monkey 0:
+  describe('challenge two', () => {
+    test('should result in 2713310158', () => {
+      expect(
+        new Day().challengeTwoHandler(`Monkey 0:
   Starting items: 79, 98
   Operation: new = old * 19
   Test: divisible by 23
@@ -60,7 +63,8 @@ Monkey 3:
   Operation: new = old + 3
   Test: divisible by 17
     If true: throw to monkey 0
-    If false: throw to monkey 1`)).toBe(2713310158);
-        });
+    If false: throw to monkey 1`)
+      ).toBe(2713310158);
     });
+  });
 });

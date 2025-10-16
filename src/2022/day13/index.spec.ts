@@ -1,8 +1,9 @@
 import Day from './index';
 describe('day 13', () => {
-    describe('challenge one', () => {
-        test('should result in 13', () => {
-            expect(new Day().challengeOneHandler(`[1,1,3,1,1]
+  describe('challenge one', () => {
+    test('should result in 13', () => {
+      expect(
+        new Day().challengeOneHandler(`[1,1,3,1,1]
 [1,1,5,1,1]
 
 [[1],[2,3,4]]
@@ -24,13 +25,15 @@ describe('day 13', () => {
 [[]]
 
 [1,[2,[3,[4,[5,6,7]]]],8,9]
-[1,[2,[3,[4,[5,6,0]]]],8,9]`)).toBe(13);
-        });
+[1,[2,[3,[4,[5,6,0]]]],8,9]`)
+      ).toBe(13);
     });
+  });
 
-    describe('challenge two', () => {
-        test('should result in 29', () => {
-            expect(new Day().challengeTwoHandler(`[1,1,3,1,1]
+  describe('challenge two', () => {
+    test('should result in 29', () => {
+      expect(
+        new Day().challengeTwoHandler(`[1,1,3,1,1]
 [1,1,5,1,1]
 
 [[1],[2,3,4]]
@@ -52,7 +55,8 @@ describe('day 13', () => {
 [[]]
 
 [1,[2,[3,[4,[5,6,7]]]],8,9]
-[1,[2,[3,[4,[5,6,0]]]],8,9]`)).toBe(140);
-        });
+[1,[2,[3,[4,[5,6,0]]]],8,9]`)
+      ).toBe(140);
     });
+  });
 });

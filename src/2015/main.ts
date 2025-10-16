@@ -2,9 +2,10 @@
 // import {challengeOne as dayTwoChallengeOne, challengeTwo as dayTwoChallengeTwo} from './day2';
 // import {challengeOne as dayThreeChallengeOne, challengeTwo as dayThreeChallengeTwo} from './day3';
 // import {challengeOne as dayFourChallengeOne, challengeTwo as dayFourChallengeTwo} from './day4';
-import {challengeOne as dayFiveChallengeOne, challengeTwo as dayFiveChallengeTwo} from './day5';
+import { challengeOne as dayFiveChallengeOne, challengeTwo as dayFiveChallengeTwo } from './day5';
 
-(await Promise.all([
+(
+  await Promise.all([
     // dayOneChallengeOne(),
     // dayOneChallengeTwo(),
     // dayTwoChallengeOne(),
@@ -14,6 +15,6 @@ import {challengeOne as dayFiveChallengeOne, challengeTwo as dayFiveChallengeTwo
     // dayFourChallengeOne(),
     // dayFourChallengeTwo(),
     dayFiveChallengeOne(),
-    dayFiveChallengeTwo()
-])).map(res => console.log(res));
-
+    dayFiveChallengeTwo(),
+  ])
+).map(res => console.log(res));

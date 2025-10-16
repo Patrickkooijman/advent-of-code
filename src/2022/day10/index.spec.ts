@@ -1,8 +1,9 @@
 import Day from './index';
 describe('day 10', () => {
-    describe('challenge one', () => {
-        test('should result in 13140', () => {
-            expect(new Day().challengeOneHandler(`addx 15
+  describe('challenge one', () => {
+    test('should result in 13140', () => {
+      expect(
+        new Day().challengeOneHandler(`addx 15
 addx -11
 addx 6
 addx -3
@@ -147,13 +148,15 @@ addx -6
 addx -11
 noop
 noop
-noop`)).toBe(13140);
-        });
+noop`)
+      ).toBe(13140);
     });
+  });
 
-    describe('challenge two', () => {
-        test('should result in', () => {
-            expect(new Day().challengeTwoHandler(`addx 15
+  describe('challenge two', () => {
+    test('should result in', () => {
+      expect(
+        new Day().challengeTwoHandler(`addx 15
 addx -11
 addx 6
 addx -3
@@ -298,13 +301,14 @@ addx -6
 addx -11
 noop
 noop
-noop`)).toBe(`
+noop`)
+      ).toBe(`
 # # . . # # . . # # . . # # . . # # . . # # . . # # . . # # . . # # . . # # . .
 # # # . . . # # # . . . # # # . . . # # # . . . # # # . . . # # # . . . # # # .
 # # # # . . . . # # # # . . . . # # # # . . . . # # # # . . . . # # # # . . . .
 # # # # # . . . . . # # # # # . . . . . # # # # # . . . . . # # # # # . . . . .
 # # # # # # . . . . . . # # # # # # . . . . . . # # # # # # . . . . . . # # # #
 # # # # # # # . . . . . . . # # # # # # # . . . . . . . # # # # # # # . . . . .`);
-        });
     });
+  });
 });

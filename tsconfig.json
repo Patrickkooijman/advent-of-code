@@ -3,9 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {},
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "typeRoots": ["node_modules/@types"],
     "resolveJsonModule": true,
     "allowJs": true,
     "outDir": "dist",
@@ -29,7 +27,5 @@
     "allowImportingTsExtensions": true,
     "noEmit": true
   },
-  "include": [
-    "./src/2024/**/*.ts"
-  ]
+  "include": ["./src/2024/**/*.ts"]
 }
