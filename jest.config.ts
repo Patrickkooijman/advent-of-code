@@ -12,10 +12,11 @@ const config: JestConfigWithTsJest = {
   restoreMocks: true,
   resetMocks: true,
   testMatch: ['<rootDir>//**/?(*.)+(spec|test).[jt]s?(x)'],
+  testPathIgnorePatterns: ['<rootDir>/src/2024/day/'],
   reporters: ['default'],
   coverageDirectory: '<rootDir>/coverage',
   collectCoverage: true,
-  collectCoverageFrom: ['<rootDir>/src/2024/**/*.ts'],
+  collectCoverageFrom: ['<rootDir>/src/2024/**/*.ts', '!<rootDir>/src/2024/day/**'],
   coverageThreshold: {
     global: {
       branches: 80,

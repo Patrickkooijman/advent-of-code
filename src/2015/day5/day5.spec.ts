@@ -2,7 +2,7 @@ import { isNiceAdvancedString, isNiceString } from './';
 
 describe('day 5', () => {
   describe('challenge one', () => {
-    test.each([
+    it.each([
       ['ugknbfddgicrmopn', true],
       ['aaa', true],
       ['jchzalrnumimnmhp', false],
@@ -14,7 +14,7 @@ describe('day 5', () => {
   });
 
   describe('challenge two', () => {
-    test.each([
+    it.each([
       ['qjhvhtzxzqqjkmpb', true],
       ['xxyxx', true],
       ['uurcxstgmygtbstg', false],

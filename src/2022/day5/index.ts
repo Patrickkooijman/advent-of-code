@@ -1,8 +1,8 @@
 import Day from '../../shared/Day';
 
 export class Day5 extends Day {
-  day: number = 5;
-  year: number = 2022;
+  day = 5;
+  year = 2022;
 
   challengeOneHandler = (input: string): string => {
     const [stacks, actions]: Data = this.extractData(input);
@@ -15,9 +15,9 @@ export class Day5 extends Day {
   };
 
   private extractData = (input: string): Data => {
-    const stackLines: Array<string> = [];
-    let stackNumbers: Array<number> = [];
-    const actions: Array<string> = [];
+    const stackLines: string[] = [];
+    let stackNumbers: number[] = [];
+    const actions: string[] = [];
 
     input
       .split('\n')
@@ -39,12 +39,9 @@ export class Day5 extends Day {
     return [this.getStacks(stackNumbers, stackLines), this.getActions(actions)];
   };
 
-  private getStacks(
-    stackNumbers: Array<number>,
-    stackLines: Array<string>
-  ): Map<number, Array<string>> {
+  private getStacks(stackNumbers: number[], stackLines: string[]): Map<number, string[]> {
     return stackNumbers.reduce(
-      (acc: Map<number, Array<string>>, curr: number): Map<number, Array<string>> => {
+      (acc: Map<number, string[]>, curr: number): Map<number, string[]> => {
         acc.set(curr, this.getStack(stackLines, curr));
         return acc;
       },
@@ -52,14 +49,14 @@ export class Day5 extends Day {
     );
   }
 
-  private getStack = (stackLines: Array<string>, number: number): Array<string> =>
+  private getStack = (stackLines: string[], number: number): string[] =>
     stackLines
       .slice()
       .reverse()
       .map((line: string): string => line[number * 4 - 3] || '')
       .filter(l => Boolean(l.trim()));
 
-  private getActions = (actions: Array<string>): Array<Action> =>
+  private getActions = (actions: string[]): Action[] =>
     actions.map(action => {
       const [amount = 0, from = 0, to = 0] = (action.match(/(\d+)/g) || []).map(i => parseInt(i));
 
@@ -70,9 +67,9 @@ export class Day5 extends Day {
       };
     });
 
-  private executeActions = (actions: Action[], stacks: Map<number, Array<string>>): string => {
+  private executeActions = (actions: Action[], stacks: Map<number, string[]>): string => {
     actions.forEach(({ amount, from, to }: Action) => {
-      for (let i: number = 1; i <= amount; i++) {
+      for (let i = 1; i <= amount; i++) {
         const number = stacks.get(from)?.pop();
         if (!number) throw Error;
         stacks.get(to)?.push(number);
@@ -81,7 +78,7 @@ export class Day5 extends Day {
 
     return this.getResult(stacks);
   };
-  private executeActions9001 = (actions: Action[], stacks: Map<number, Array<string>>): string => {
+  private executeActions9001 = (actions: Action[], stacks: Map<number, string[]>): string => {
     actions.forEach(({ amount, from, to }: Action) => {
       const numbers = stacks.get(from)?.splice(-amount);
       if (!numbers) throw Error;
@@ -91,7 +88,7 @@ export class Day5 extends Day {
     return this.getResult(stacks);
   };
 
-  private getResult = (stacks: Map<number, Array<string>>): string =>
+  private getResult = (stacks: Map<number, string[]>): string =>
     Array.from(stacks)
       .map(([_, value]) => value.at(-1))
       .join('');
@@ -103,6 +100,6 @@ interface Action {
   to: number;
 }
 
-type Data = [stacks: Map<number, Array<string>>, actions: Array<Action>];
+type Data = [stacks: Map<number, string[]>, actions: Action[]];
 
 export default Day5;

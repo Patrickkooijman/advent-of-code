@@ -4,7 +4,7 @@ const parseInput = (data: string): number[][] => {
   const col1: number[] = [];
   const col2: number[] = [];
 
-  const numbers: Array<Array<number>> = data
+  const numbers: number[][] = data
     .split('\n')
     .filter(line => line.trim() !== '')
     .map(line => line.split(/\s+/g).map(Number));
@@ -47,13 +47,12 @@ export const part_2 = (data: string) => {
   return total;
 };
 
-
 export function main() {
-    const data = getInput(__dirname);
-    part_1(data);
-    part_2(data);
+  const data = getInput(__dirname);
+  part_1(data);
+  part_2(data);
 }
 
 if (require.main === module) {
-    main();
+  main();
 }

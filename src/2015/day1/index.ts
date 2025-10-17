@@ -20,7 +20,7 @@ export const challengeTwo = (): Promise<string> =>
     .then(res => `Day 1, challenge 1: ${res}`);
 
 export function challengeTwoHandler(input: string): number {
-  let currentFloor: number = 0;
+  let currentFloor = 0;
 
   return (
     input.split('').findIndex((value: string): boolean => {

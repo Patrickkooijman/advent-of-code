@@ -1,8 +1,8 @@
 import Day from '../../shared/Day';
 
 export default class Day9 extends Day {
-  day: number = 9;
-  year: number = 2022;
+  day = 9;
+  year = 2022;
 
   challengeOneHandler = (input: string): number => this.calculateTouchedFields(input, 1);
   challengeTwoHandler = (input: string): number => this.calculateTouchedFields(input, 9);
@@ -18,12 +18,12 @@ export default class Day9 extends Day {
   };
 
   private calculateTouchedFields = (input: string, amountOfKnots: number) => {
-    const actions: Array<Action> = this.parseInput(input);
-    let knots: Coordinate[] = Array(amountOfKnots + 1)
+    const actions: Action[] = this.parseInput(input);
+    const knots: Coordinate[] = Array(amountOfKnots + 1)
       .fill(null)
       .map(() => ({ x: 0, y: 0 }));
-    let head: Coordinate = knots.at(0)!;
-    const tails: Array<Coordinate> = [knots.at(-1)!];
+    const head: Coordinate = knots.at(0)!;
+    const tails: Coordinate[] = [knots.at(-1)!];
 
     actions.forEach(([dir, distance]: Action) => {
       for (let i = 1; i <= distance; i++) {
@@ -64,7 +64,7 @@ export default class Day9 extends Day {
     (head.x === tail.x && Math.abs(head.y - tail.y) <= 1) ||
     (head.y === tail.y && Math.abs(head.x - tail.x) <= 1);
   private moveTailTo = (head: Coordinate, tail: Coordinate): Coordinate => {
-    const options: Array<Coordinate> = [
+    const options: Coordinate[] = [
       // NW
       { x: tail.x + 1, y: tail.y - 1 },
       // N
@@ -90,7 +90,7 @@ export default class Day9 extends Day {
     );
   };
 
-  private calculateResult = (tails: Array<Coordinate>): number =>
+  private calculateResult = (tails: Coordinate[]): number =>
     tails.filter(
       (tail: Coordinate, index: number, self: Coordinate[]): boolean =>
         self.findIndex((coor: Coordinate): boolean => coor.x === tail.x && coor.y === tail.y) ===

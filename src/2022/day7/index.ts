@@ -1,8 +1,8 @@
 import Day from '../../shared/Day';
 
 export default class Day7 extends Day {
-  day: number = 7;
-  year: number = 2022;
+  day = 7;
+  year = 2022;
   root: Folder = {
     name: '/',
     parent: null,
@@ -75,7 +75,7 @@ export default class Day7 extends Day {
   };
 
   private calculateSize = (root: Folder): number => {
-    let children: number = 0;
+    let children = 0;
     if (root.children.length) {
       children = root.children.map(this.calculateSize).reduce((acc, cur) => acc + cur, 0);
     }
@@ -85,7 +85,7 @@ export default class Day7 extends Day {
   };
 
   private getSumOfFoldersBelow = (root: Folder): number => {
-    const threshold: number = 100_000;
+    const threshold = 100_000;
     const thisSize = root.size <= threshold ? root.size : 0;
     const childrenSize = root.children
       .map(f => this.getSumOfFoldersBelow(f))
@@ -95,8 +95,8 @@ export default class Day7 extends Day {
   };
 
   private findSmallestFolder = (root: Folder): Folder => {
-    const diskSpace: number = 70_000_000;
-    const diskSpaceNeeded: number = 30_000_000;
+    const diskSpace = 70_000_000;
+    const diskSpaceNeeded = 30_000_000;
     const needed: number = Math.abs(diskSpace - diskSpaceNeeded - this.root.size);
 
     return root.size > needed && !!root.children.length
@@ -118,7 +118,7 @@ interface File {
 interface Folder {
   name: string;
   parent: Folder | null;
-  children: Array<Folder>;
-  files: Array<File>;
+  children: Folder[];
+  files: File[];
   size: number;
 }

@@ -1,8 +1,8 @@
 import Day from '../../shared/Day';
 
 export default class Day12 extends Day {
-  day: number = 12;
-  year: number = 2022;
+  day = 12;
+  year = 2022;
   challengeOneHandler = (input: string): number => {
     const nodes: Node[] = this.parseInput(input);
     const start: Node = nodes.find((node: Node): boolean => node.name === 'S')!;
@@ -12,7 +12,7 @@ export default class Day12 extends Day {
 
   challengeTwoHandler = (input: string): number => {
     const nodes: Node[] = this.parseInput(input);
-    const start: Node[] = nodes.filter((node: Node): boolean => ['S', 'a'].includes(node.name))!;
+    const start: Node[] = nodes.filter((node: Node): boolean => ['S', 'a'].includes(node.name));
     const end: Node = nodes.find((node: Node): boolean => node.name === 'E')!;
     return Math.min(
       ...start
@@ -49,7 +49,7 @@ export default class Day12 extends Day {
     return 0;
   };
 
-  private findNeighbors = (nodes: Array<Node>, current: Node): Array<Node> => {
+  private findNeighbors = (nodes: Node[], current: Node): Node[] => {
     const { x, y, value } = current;
     const candidates = [
       { x, y: y - 1 },
@@ -66,18 +66,17 @@ export default class Day12 extends Day {
 
   private parseInput = (input: string): Node[] => {
     const alphabet = 'SabcdefghijklmnopqrstuvwxyzE';
-    return input.split('\n').flatMap(
-      (line: string, y: number): Array<Node> =>
-        line.split('').map(
-          (name: string, x: number): Node => ({
-            value: alphabet.indexOf(name),
-            x,
-            y,
-            distance: 0,
-            visited: false,
-            name,
-          })
-        )
+    return input.split('\n').flatMap((line: string, y: number): Node[] =>
+      line.split('').map(
+        (name: string, x: number): Node => ({
+          value: alphabet.indexOf(name),
+          x,
+          y,
+          distance: 0,
+          visited: false,
+          name,
+        })
+      )
     );
   };
 }

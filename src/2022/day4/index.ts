@@ -1,7 +1,7 @@
 import Day from '../../shared/Day';
 
 export class Day4 extends Day {
-  day: number = 4;
+  day = 4;
   year = 2022;
 
   challengeOneHandler = (input: string): number =>
@@ -18,7 +18,7 @@ export class Day4 extends Day {
         .filter(Boolean)
         .map((line: string): Assignment => {
           const [_, s1 = '', e1 = '', s2 = '', e2 = ''] =
-            line.match(/(\d*)-(\d*),(\d*)-(\d*)/) || [];
+            /(\d*)-(\d*),(\d*)-(\d*)/.exec(line) || [];
 
           return {
             s1: parseInt(s1),
@@ -50,13 +50,11 @@ export class Day4 extends Day {
   };
 }
 
-type Assignment = {
+interface Assignment {
   s1: number;
   s2: number;
   e1: number;
   e2: number;
-};
+}
 
-type Predicate = {
-  (value: Assignment): boolean;
-};
+type Predicate = (value: Assignment) => boolean;

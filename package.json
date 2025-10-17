@@ -10,7 +10,11 @@
     "test:2024": "jest --no-cache --runInBand src/2024",
     "dev:2015": "tsx --watch & nodemon --experimental-specifier-resolution=node js/2015/main.js",
     "dev:2022": "tsx --watch & nodemon --experimental-specifier-resolution=node js/2022/main.js",
-    "dev:2024": "tsx --watch & nodemon --experimental-specifier-resolution=node js/2024/main.js"
+    "dev:2024": "tsx --watch & nodemon --experimental-specifier-resolution=node js/2024/main.js",
+    "format": "prettier './src/**/*.ts' --check",
+    "format:fix": "yarn format --write",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "keywords": [],
   "author": "",
@@ -20,13 +24,25 @@
     "crypto": "^1.0.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.37.0",
+    "@eslint/json": "^0.13.2",
     "@tsconfig/node24": "^24.0.1",
     "@types/jest": "^30.0.0",
+    "eslint": "^9.37.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jest": "^29.0.1",
+    "eslint-plugin-json": "^4.0.1",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-promise": "^7.2.1",
+    "globals": "^16.4.0",
     "jest": "^30.2.0",
     "nodemon": "^3.1.10",
+    "prettier": "^3.6.2",
     "ts-jest": "^29.4.5",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.6",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.1"
   }
 }

@@ -17,4 +17,6 @@ import { challengeOne as dayFiveChallengeOne, challengeTwo as dayFiveChallengeTw
     dayFiveChallengeOne(),
     dayFiveChallengeTwo(),
   ])
-).map(res => console.log(res));
+).map(res => {
+  console.log(res);
+});

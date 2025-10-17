@@ -1,7 +1,7 @@
 import Day from '../../shared/Day';
 
 export class Day3 extends Day {
-  day: number = 3;
+  day = 3;
   year = 2022;
 
   challengeOneHandler(input: string): number {
@@ -15,12 +15,12 @@ export class Day3 extends Day {
         ]
       )
       .map(([bagOne = [], bagTwo = []]: string[][]) => bagOne.find(item => bagTwo.includes(item)))
-      .map((item: string = '!'): number => Day3.valueItemInBag(item))
+      .map((item = '!'): number => Day3.valueItemInBag(item))
       .reduce((acc: number, curr: number): number => acc + curr, 0);
   }
 
   challengeTwoHandler(input: string): number {
-    const bags: Array<Array<string>> = input
+    const bags: string[][] = input
       .split('\n')
       .filter(Boolean)
       .map(i => i.split(''));
@@ -32,7 +32,7 @@ export class Day3 extends Day {
             item => (group.at(1) || []).includes(item) && (group.at(2) || []).includes(item)
           ) || '!'
       )
-      .map((item: string = '!'): number => Day3.valueItemInBag(item))
+      .map((item = '!'): number => Day3.valueItemInBag(item))
       .reduce((acc: number, curr: number): number => acc + curr, 0);
   }
 
@@ -40,7 +40,7 @@ export class Day3 extends Day {
     return '!abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(item);
   }
 
-  private static spliceIntoChunks(arr: string[][], chunkSize: number): Array<Array<Array<string>>> {
+  private static spliceIntoChunks(arr: string[][], chunkSize: number): string[][][] {
     const res = [];
     while (arr.length > 0) {
       const chunk = arr.splice(0, chunkSize);

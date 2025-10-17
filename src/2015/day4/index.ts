@@ -1,5 +1,5 @@
-import fetch from '../input/fetch';
 import crypto from 'crypto';
+import fetch from '../input/fetch';
 
 export const challengeOne = (): Promise<string> =>
   fetch('4')
@@ -18,7 +18,7 @@ export const challengeTwoHandler = (input: string): number =>
   calculateHash(input, /^0{6}[:alnum:]*/);
 
 function calculateHash(fromString: string, withRegex: RegExp): number {
-  let n: number = 0;
+  let n = 0;
   const input: string = fromString.replace(/(\r\n|\n|\r)/gm, '');
 
   while (

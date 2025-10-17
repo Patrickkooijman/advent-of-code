@@ -1,6 +1,6 @@
 import fetch from '../input/fetch';
 
-const day: number = 5;
+const day = 5;
 
 export const challengeOne = (): Promise<string> =>
   fetch(day)
@@ -28,16 +28,14 @@ const createPipe =
 
 const hasThreeVowels = (input: string): boolean => (input.match(/[aeiou]/gi) || []).length >= 3;
 const hasTwoConsecutiveLetters = (input: string): boolean =>
-  !!(input.match(/([a-z])\1/) || []).length;
+  !!(/([a-z])\1/.exec(input) || []).length;
 const doesNotContainBlacklisted = (input: string): boolean =>
-  !(input.match(/ab|cd|pq|xy/) || []).length;
+  !(/ab|cd|pq|xy/.exec(input) || []).length;
 
-const doesRepeat = (input: string): boolean => !!(input.match(/(..).*\1/) || []).length;
-const isSpaced = (input: string): boolean => !!(input.match(/(.).\1/) || []).length;
+const doesRepeat = (input: string): boolean => !!(/(..).*\1/.exec(input) || []).length;
+const isSpaced = (input: string): boolean => !!(/(.).\1/.exec(input) || []).length;
 
-type Predicate = {
-  (value: string): boolean;
-};
+type Predicate = (value: string) => boolean;
 
 export default {
   challengeOne,

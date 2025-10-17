@@ -1,7 +1,8 @@
 import Day from './index';
+
 describe('day 6', () => {
   describe('challenge one', () => {
-    test.each([
+    it.each([
       ['mjqjpqmgbljsphdztnvjfqwrcgsmlb', 7],
       ['bvwbjplbgvbhsrlpgdmjqwftvncz', 5],
       ['nppdvjthqldpwncqszvftbrmjlhg', 6],
@@ -13,7 +14,7 @@ describe('day 6', () => {
   });
 
   describe('challenge two', () => {
-    test.each([
+    it.each([
       ['mjqjpqmgbljsphdztnvjfqwrcgsmlb', 19],
       ['bvwbjplbgvbhsrlpgdmjqwftvncz', 23],
       ['nppdvjthqldpwncqszvftbrmjlhg', 23],

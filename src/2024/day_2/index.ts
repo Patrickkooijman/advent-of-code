@@ -61,7 +61,7 @@ export const part_2 = (data: string): number => {
   return validCount;
 };
 
-export function main() {
+function main() {
   const data = getInput(__dirname);
   part_1(data);
   part_2(data);

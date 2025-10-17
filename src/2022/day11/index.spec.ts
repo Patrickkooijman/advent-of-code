@@ -1,7 +1,8 @@
 import Day from './index';
+
 describe('day 11', () => {
   describe('challenge one', () => {
-    test('should result in 10605', () => {
+    it('should result in 10605', () => {
       expect(
         new Day().challengeOneHandler(`Monkey 0:
   Starting items: 79, 98
@@ -35,7 +36,7 @@ Monkey 3:
   });
 
   describe('challenge two', () => {
-    test('should result in 2713310158', () => {
+    it('should result in 2713310158', () => {
       expect(
         new Day().challengeTwoHandler(`Monkey 0:
   Starting items: 79, 98

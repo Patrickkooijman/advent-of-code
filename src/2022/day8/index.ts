@@ -1,8 +1,8 @@
 import Day from '../../shared/Day';
 
 export default class Day8 extends Day {
-  day: number = 8;
-  year: number = 2022;
+  day = 8;
+  year = 2022;
 
   challengeOneHandler = (input: string): number => {
     const trees = this.parseInput(input);

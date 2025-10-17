@@ -1,8 +1,8 @@
 import Day from '../../shared/Day';
 
 export default class Day11 extends Day {
-  day: number = 11;
-  year: number = 2022;
+  day = 11;
+  year = 2022;
 
   challengeOneHandler = (input: string): number => this.handle(input, 20, 1);
 
@@ -16,8 +16,8 @@ export default class Day11 extends Day {
         ? this.challengeOneWorryLevelMethod
         : this.challengeTwoWorryLevelMethod(monkeys);
 
-    for (let round: number = 1; round <= amountOfRounds; round++) {
-      for (let monkeyNumber: number = 0; monkeyNumber < monkeys.size; monkeyNumber++) {
+    for (let round = 1; round <= amountOfRounds; round++) {
+      for (let monkeyNumber = 0; monkeyNumber < monkeys.size; monkeyNumber++) {
         const monkey = monkeys.get(`Monkey ${monkeyNumber}`);
         if (monkey) monkey.playRound(divisionMethod);
       }
@@ -90,16 +90,16 @@ export default class Day11 extends Day {
 
 class Monkey {
   name: string;
-  items: Array<number> = [];
+  items: number[] = [];
   operation: Operation = () => 0;
-  test: number = 0;
+  test = 0;
   whenTrue: Monkey | null = null;
   whenFalse: Monkey | null = null;
-  inspections: number = 0;
+  inspections = 0;
 
   constructor(
     name: string,
-    items?: Array<number>,
+    items?: number[],
     operation?: Operation,
     test?: number,
     whenTrue?: Monkey,
@@ -119,7 +119,7 @@ class Monkey {
     this.items.forEach((item: number) => {
       const worryLevel: number = this.operation?.(item) || 0;
       const boredLevel: number = worryDivisionMethod(worryLevel);
-      const toMonkey: Monkey = this.toMonkey(boredLevel)!;
+      const toMonkey: Monkey = this.toMonkey(boredLevel);
       toMonkey.catchItem(boredLevel);
 
       this.inspections++;
@@ -133,10 +133,6 @@ class Monkey {
   };
 }
 
-type Operation = {
-  (value: number): number;
-};
+type Operation = (value: number) => number;
 
-type WorryDivision = {
-  (value: number): number;
-};
+type WorryDivision = (value: number) => number;

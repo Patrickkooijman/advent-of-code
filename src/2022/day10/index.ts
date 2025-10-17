@@ -1,14 +1,14 @@
 import Day from '../../shared/Day';
 
 export default class Day10 extends Day {
-  day: number = 10;
-  year: number = 2022;
+  day = 10;
+  year = 2022;
 
   challengeOneHandler = (input: string): number => {
-    let X: number = 1;
-    const cycles: Array<number> = [X];
+    let X = 1;
+    const cycles: number[] = [X];
 
-    const instructions: Array<Instruction> = this.parseInput(input);
+    const instructions: Instruction[] = this.parseInput(input);
 
     instructions.forEach(({ command, value }: Instruction) => {
       switch (command) {
@@ -31,10 +31,10 @@ export default class Day10 extends Day {
   };
 
   challengeTwoHandler = (input: string): string => {
-    let spritePosition: number = 0;
-    const cycles: Array<number> = [];
+    let spritePosition = 0;
+    const cycles: number[] = [];
 
-    const instructions: Array<Instruction> = this.parseInput(input);
+    const instructions: Instruction[] = this.parseInput(input);
 
     instructions.forEach(({ command, value }: Instruction) => {
       switch (command) {
@@ -61,7 +61,7 @@ export default class Day10 extends Day {
     return '\n' + this.splitToLines(board).join('\n');
   };
 
-  parseInput = (input: string): Array<Instruction> =>
+  parseInput = (input: string): Instruction[] =>
     input
       .split('\n')
       .filter(Boolean)
@@ -73,7 +73,7 @@ export default class Day10 extends Day {
         };
       });
 
-  private splitToLines = (digits: Array<string>): Array<string> => {
+  private splitToLines = (digits: string[]): string[] => {
     const length = 40;
     const array = [...digits];
     const current = array.splice(-length);

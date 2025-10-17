@@ -47,7 +47,7 @@ function calculateRibbon(input: string): number {
 type lhb = [l: number, h: number, b: number];
 
 function parseInput(input: string): lhb {
-  const match: Array<string> = new RegExp(/([0-9]+)x([0-9]+)x([0-9]+)/gm).exec(input) || [];
+  const match: string[] = new RegExp(/([0-9]+)x([0-9]+)x([0-9]+)/gm).exec(input) || [];
   const [_, l = 0, h = 0, b = 0]: number[] = match.map((m: string): number => parseInt(m));
 
   return [l, h, b];

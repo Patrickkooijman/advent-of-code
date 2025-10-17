@@ -2,7 +2,7 @@ import { challengeOneHandler, challengeTwoHandler } from './index';
 
 describe('day 1', () => {
   describe('challenge one', () => {
-    test.each([
+    it.each([
       ['(())', 0],
       ['()()', 0],
       ['(((', 3],
@@ -18,7 +18,7 @@ describe('day 1', () => {
   });
 
   describe('challenge two', () => {
-    test.each([
+    it.each([
       [')', 1],
       ['()()))', 5],
     ])('%s should result in %i', (test: string, result: number) => {

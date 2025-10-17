@@ -47,7 +47,7 @@ export const challengeTwoHandler = (input: string): number => {
   const startLocation: Location = { x: 0, y: 0 };
   let santaLastLocation: Location = startLocation;
   let roboSantaLastLocation: Location = startLocation;
-  let isSanta: boolean = true;
+  let isSanta = true;
 
   return [startLocation]
     .concat(
@@ -120,7 +120,7 @@ export const challengeTwoHandler = (input: string): number => {
 function unDoubleLocations(
   loc: Location | undefined,
   index: number,
-  self: Array<Location | undefined>
+  self: (Location | undefined)[]
 ): boolean {
   return index === self.findIndex(t => t?.x === loc?.x && t?.y === loc?.y);
 }

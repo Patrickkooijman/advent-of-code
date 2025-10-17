@@ -1,14 +1,14 @@
 import Day from '../../shared/Day';
 
 export default class Day14 extends Day {
-  day: number = 14;
-  year: number = 2022;
+  day = 14;
+  year = 2022;
   challengeOneHandler = (input: string): number => this.countDroppedSands(this.parseInput(input));
   challengeTwoHandler = (input: string): number =>
     this.countDroppedSandsPartTwo(this.parseInput(input));
 
   private countDroppedSands = (data: Data): number => {
-    let amount: number = 0;
+    let amount = 0;
     while (this.dropSand(data)) {
       amount++;
     }
@@ -18,10 +18,10 @@ export default class Day14 extends Day {
 
   private dropSand = (data: Data): boolean => {
     const { points, lowest } = data;
-    const entryPoint: string = '500,0';
+    const entryPoint = '500,0';
 
-    let currentX: number = 500;
-    let currentY: number = 0;
+    let currentX = 500;
+    let currentY = 0;
 
     if (!points.has(entryPoint)) {
       points.set(entryPoint, {
@@ -32,14 +32,14 @@ export default class Day14 extends Day {
     }
 
     while (true) {
-      let beforeX: number = currentX - 1;
-      let nextX: number = currentX + 1;
-      let belowY: number = currentY + 1;
+      const beforeX: number = currentX - 1;
+      const nextX: number = currentX + 1;
+      const belowY: number = currentY + 1;
 
-      let current: string = `${currentX},${currentY}`;
-      let before: string = `${beforeX},${belowY}`;
-      let next: string = `${nextX},${belowY}`;
-      let below: string = `${currentX},${belowY}`;
+      const current = `${currentX},${currentY}`;
+      const before = `${beforeX},${belowY}`;
+      const next = `${nextX},${belowY}`;
+      const below = `${currentX},${belowY}`;
 
       // Below lowest
       if (belowY > lowest) return false;
@@ -91,7 +91,7 @@ export default class Day14 extends Day {
   };
 
   private countDroppedSandsPartTwo = (data: Data): number => {
-    let amount: number = 0;
+    let amount = 0;
     while (this.dropSandPartTwo(data)) {
       amount++;
     }
@@ -100,10 +100,10 @@ export default class Day14 extends Day {
   };
   private dropSandPartTwo = (data: Data): boolean => {
     const { points, lowest } = data;
-    const entryPoint: string = '500,0';
+    const entryPoint = '500,0';
 
-    let currentX: number = 500;
-    let currentY: number = 0;
+    let currentX = 500;
+    let currentY = 0;
 
     if (!points.has(entryPoint)) {
       points.set(entryPoint, {
@@ -114,14 +114,14 @@ export default class Day14 extends Day {
     }
 
     while (true) {
-      let beforeX: number = currentX - 1;
-      let nextX: number = currentX + 1;
-      let belowY: number = currentY + 1;
+      const beforeX: number = currentX - 1;
+      const nextX: number = currentX + 1;
+      const belowY: number = currentY + 1;
 
-      let current: string = `${currentX},${currentY}`;
-      let before: string = `${beforeX},${belowY}`;
-      let next: string = `${nextX},${belowY}`;
-      let below: string = `${currentX},${belowY}`;
+      const current = `${currentX},${currentY}`;
+      const before = `${beforeX},${belowY}`;
+      const next = `${nextX},${belowY}`;
+      const below = `${currentX},${belowY}`;
 
       // Below one is empty
       if (!points.has(below)) {
@@ -175,14 +175,14 @@ export default class Day14 extends Day {
   };
 
   private parseInput = (input: string): Data => {
-    const points: Map<string, Point> = new Map();
-    let lowest: number = 0;
+    const points = new Map<string, Point>();
+    let lowest = 0;
 
     const lines: string[] = input.split('\n').filter(Boolean);
-    lines.forEach((line: string) =>
+    lines.forEach((line: string) => {
       line.split('->').forEach((from: string, index: number, self: string[]): void => {
         const to: string | undefined = self[index + 1];
-        if (!!to) {
+        if (to) {
           const [xFrom, yFrom] = from.split(',').map(Number);
           const [xTo, yTo] = to.split(',').map(Number);
 
@@ -196,8 +196,8 @@ export default class Day14 extends Day {
             }
           }
         }
-      })
-    );
+      });
+    });
 
     return {
       points,

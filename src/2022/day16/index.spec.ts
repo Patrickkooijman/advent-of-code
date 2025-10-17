@@ -1,7 +1,8 @@
 import Day from './index';
+
 describe('day 16', () => {
   describe('challenge one', () => {
-    test('should result in 1651', () => {
+    it('should result in 1651', () => {
       expect(
         new Day().challengeOneHandler(`Valve AA has flow rate=0; tunnels lead to valves DD, II, BB
 Valve BB has flow rate=13; tunnels lead to valves CC, AA
@@ -18,7 +19,7 @@ Valve JJ has flow rate=21; tunnel leads to valve II`)
   });
 
   describe('challenge two', () => {
-    test.skip('should result in 56000011', () => {
+    it.skip('should result in 56000011', () => {
       expect(
         new Day().challengeTwoHandler(`Sensor at x=2, y=18: closest beacon is at x=-2, y=15
 Sensor at x=9, y=16: closest beacon is at x=10, y=16

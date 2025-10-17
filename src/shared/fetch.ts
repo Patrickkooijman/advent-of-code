@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios, { isAxiosError } from 'axios';
 
-export default async function fetch(day: string | number, year: number = 2022): Promise<string> {
+export default async function fetch(day: string | number, year = 2022): Promise<string> {
   try {
     const { data } = await axios.get<string>(`https://adventofcode.com/${year}/day/${day}/input`, {
       headers: {
@@ -11,7 +11,7 @@ export default async function fetch(day: string | number, year: number = 2022): 
 
     return data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
+    if (isAxiosError(error)) {
       console.log('error message: ', error.message);
       return error.message;
     } else {

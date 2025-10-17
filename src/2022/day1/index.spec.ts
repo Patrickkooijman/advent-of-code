@@ -2,7 +2,7 @@ import { Day1 } from './index';
 
 describe('day 1', () => {
   describe('challenge one', () => {
-    test('should result in 24000', () => {
+    it('should result in 24000', () => {
       expect(
         new Day1().challengeOneHandler(`1000
 2000
@@ -23,7 +23,7 @@ describe('day 1', () => {
   });
 
   describe('challenge two', () => {
-    test('should result in 45000', () => {
+    it('should result in 45000', () => {
       expect(
         new Day1().challengeTwoHandler(`1000
 2000

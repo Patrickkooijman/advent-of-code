@@ -27,5 +27,5 @@
     "allowImportingTsExtensions": true,
     "noEmit": true
   },
-  "include": ["./src/2024/**/*.ts"]
+  "include": ["./**/*.ts"]
 }

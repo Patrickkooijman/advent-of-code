@@ -1,7 +1,8 @@
 import Day from './index';
+
 describe('day 7', () => {
   describe('challenge one', () => {
-    test('should result in 95437', () => {
+    it('should result in 95437', () => {
       expect(
         new Day().challengeOneHandler(`$ cd /
 $ ls
@@ -29,8 +30,9 @@ $ ls
       ).toBe(95437);
     });
   });
+
   describe('challenge two', () => {
-    test('should result in 24933642', () => {
+    it('should result in 24933642', () => {
       expect(
         new Day().challengeTwoHandler(`$ cd /
 $ ls

@@ -1,7 +1,8 @@
 import Day from './index';
+
 describe('day 9', () => {
   describe('challenge one', () => {
-    test('should result in 13', () => {
+    it('should result in 13', () => {
       expect(
         new Day().challengeOneHandler(`R 4
 U 4
@@ -16,7 +17,7 @@ R 2`)
   });
 
   describe('challenge two', () => {
-    test('should result in 1', () => {
+    it('should result in 1', () => {
       expect(
         new Day().challengeTwoHandler(`R 4
 U 4
@@ -29,7 +30,7 @@ R 2`)
       ).toBe(1);
     });
 
-    test('should result in 36', () => {
+    it('should result in 36', () => {
       expect(
         new Day().challengeTwoHandler(`R 5
 U 8

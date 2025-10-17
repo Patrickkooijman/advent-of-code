@@ -1,10 +1,10 @@
 import Day from '../../shared/Day';
 
 export default class Day13 extends Day {
-  day: number = 13;
-  year: number = 2022;
+  day = 13;
+  year = 2022;
   challengeOneHandler = (input: string): number => {
-    const pairs: Array<Pair> = this.parseInput(input);
+    const pairs: Pair[] = this.parseInput(input);
     const results = pairs.map(({ left, right }) => this.isInCorrectOrder(left, right));
 
     return results.reduce(
@@ -16,7 +16,7 @@ export default class Day13 extends Day {
     const firstAdditionalPackage: number[][] = [[2]];
     const secondAdditionalPackage: number[][] = [[6]];
 
-    const pairs: Array<Pair> = this.parseInput(input);
+    const pairs: Pair[] = this.parseInput(input);
     const packets: number[][][] = [firstAdditionalPackage, secondAdditionalPackage].concat(
       pairs.flatMap(({ left, right }) => [left, right])
     );
@@ -59,7 +59,7 @@ export default class Day13 extends Day {
     if (!leftIsNumber && rightIsNumber) return this.isInCorrectOrder(left, [right]);
     return;
   }
-  private parseInput = (input: string): Array<Pair> =>
+  private parseInput = (input: string): Pair[] =>
     input.split(/\n\s*\n/).map((line: string): Pair => {
       const [left, right] = line.split('\n');
       return {
@@ -70,6 +70,6 @@ export default class Day13 extends Day {
 }
 
 interface Pair {
-  left: Array<number>;
-  right: Array<number>;
+  left: number[];
+  right: number[];
 }

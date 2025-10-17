@@ -2,7 +2,7 @@ import Day from './index';
 
 describe('day 5', () => {
   describe('challenge one', () => {
-    test('should result in CMZ', () => {
+    it('should result in CMZ', () => {
       expect(
         new Day().challengeOneHandler(
           `    [D]    
@@ -20,7 +20,7 @@ move 1 from 1 to 2`
   });
 
   describe('challenge two', () => {
-    test('should result in 70', () => {
+    it('should result in 70', () => {
       expect(
         new Day().challengeTwoHandler(
           `    [D]

@@ -1,14 +1,14 @@
 import Day from '../../shared/Day';
 
 export default class Day16 extends Day {
-  day: number = 16;
-  year: number = 2022;
+  day = 16;
+  year = 2022;
   challengeOneHandler = (input: string): number => {
     const valves: Map<string, Valve> = this.parseInput(input);
 
-    let pressure: number = 0;
-    let totalPressure: number = 0;
-    let minutesSpent: number = 0;
+    const pressure = 0;
+    let totalPressure = 0;
+    let minutesSpent = 0;
     let currentValve: Valve = valves.get('AA')!;
 
     while (minutesSpent < 30) {
@@ -45,11 +45,11 @@ export default class Day16 extends Day {
   };
 
   private parseInput = (input: string): Map<string, Valve> => {
-    const valves: Map<string, Valve> = new Map();
+    const valves = new Map<string, Valve>();
 
     input.split('\n').forEach((line: string): void => {
-      const [_, name = '', rate = '', leads = ''] = line.match(
-        /Valve\s([A-Z]{2}).*=(\d+).*valves\s(.*)/
+      const [_, name = '', rate = '', leads = ''] = /Valve\s([A-Z]{2}).*=(\d+).*valves\s(.*)/.exec(
+        line
       )!;
       const valve = this.getOrAddValve(name, valves);
       valve.rate = Number(rate);
