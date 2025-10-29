@@ -7,7 +7,7 @@ export const part_1 = (data: string): number => {
 };
 
 export const part_2 = (data: string): number => {
-  console.log(data);
+  const grid = new Grid(data);
 
-  return 0;
+  return grid.setAntinodes(true);
 };

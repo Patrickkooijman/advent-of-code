@@ -15,14 +15,14 @@ describe('Day', () => {
   });
 
   it('part 1 input', () => {
-    expect(part_1(inputData)).toBe(0);
+    expect(part_1(inputData)).toBe(381);
   });
 
   it('part 2 example', () => {
-    expect(part_2(exampleData)).toBe(0);
+    expect(part_2(exampleData)).toBe(34);
   });
 
   it('part 2 input', () => {
-    expect(part_2(inputData)).toBe(0);
+    expect(part_2(inputData)).toBe(1184);
   });
 });

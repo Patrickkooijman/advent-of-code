@@ -30,7 +30,38 @@ export default class Grid implements IGrid {
     }
   }
 
-  setAntinodes(): number {
+  getSingleNodeKey = (item: Item, otherItem: Item): string[] => {
+    const nodeX = item.x + item.x - otherItem.x;
+    const nodeY = item.y + item.y - otherItem.y;
+
+    return [`${nodeX}-${nodeY}`];
+  };
+
+  getAllNodeKeys = (item: Item, otherItem: Item): string[] => {
+    const nodeKeys: string[] = [];
+
+    const xDistance = item.x - otherItem.x;
+    const yDistance = item.y - otherItem.y;
+
+    const [xDist, yDist] = reduce(xDistance, yDistance);
+
+    const forStep = (step = 1): void => {
+      const nodeX = item.x - xDist * step;
+      const nodeY = item.y - yDist * step;
+      const nodeKey = `${nodeX}-${nodeY}`;
+
+      if (this.items.has(nodeKey)) {
+        nodeKeys.push(nodeKey);
+        forStep(step + 1);
+      }
+    };
+
+    forStep();
+
+    return nodeKeys;
+  };
+
+  setAntinodes(all = false): number {
     let antinodesCount = 0;
 
     for (const [value, items] of this.valuesMap.entries()) {
@@ -44,14 +75,14 @@ export default class Grid implements IGrid {
             continue;
           }
 
-          const nodeX = item.x + item.x - otherItem.x;
-          const nodeY = item.y + item.y - otherItem.y;
-          const nodeKey = `${nodeX}-${nodeY}`;
+          const nodeKeys = all
+            ? this.getAllNodeKeys(item, otherItem)
+            : this.getSingleNodeKey(item, otherItem);
 
-          if (this.items.has(nodeKey)) {
-            const nodeItem = this.items.get(nodeKey)!;
-            if (!nodeItem.antinode) {
-              nodeItem.antinode = true;
+          for (const key of nodeKeys) {
+            const item = this.items.get(key);
+            if (item && !item.antinode) {
+              item.antinode = true;
               antinodesCount++;
             }
           }
@@ -62,3 +93,16 @@ export default class Grid implements IGrid {
     return antinodesCount;
   }
 }
+
+const getGCD = function (a: number, b: number): number {
+  if (!b) {
+    return a;
+  }
+  return getGCD(b, a % b);
+};
+
+const reduce = function (n: number, d: number): [number, number] {
+  const gcd = getGCD(Math.abs(n), Math.abs(d));
+
+  return [n / gcd, d / gcd];
+};
