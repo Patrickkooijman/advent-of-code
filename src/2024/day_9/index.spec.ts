@@ -19,10 +19,10 @@ describe('Day', () => {
   });
 
   it('part 2 example', () => {
-    expect(part_2(exampleData)).toBe(0);
+    expect(part_2(exampleData)).toBe(2858);
   });
 
   it('part 2 input', () => {
-    expect(part_2(inputData)).toBe(0);
+    expect(part_2(inputData)).toBe(6478232739671);
   });
 });
