@@ -5,9 +5,9 @@
   "type": "commonjs",
   "scripts": {
     "test": "jest --watch src/",
-    "test:2015": "jest --watch src/2015",
-    "test:2022": "jest --watch src/2022",
-    "test:2024": "jest --no-cache --runInBand src/2024",
+    "test:2015": "jest --watch src/aoc/2015",
+    "test:2022": "jest --watch src/aoc/2022",
+    "test:2024": "jest --no-cache --runInBand src/aoc/2024",
     "dev:2015": "tsx --watch & nodemon --experimental-specifier-resolution=node js/2015/main.js",
     "dev:2022": "tsx --watch & nodemon --experimental-specifier-resolution=node js/2022/main.js",
     "dev:2024": "tsx --watch & nodemon --experimental-specifier-resolution=node js/2024/main.js",

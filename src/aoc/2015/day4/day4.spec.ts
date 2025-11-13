@@ -1,0 +1,12 @@
+import { challengeOneHandler } from './index.ts';
+
+describe('day 4', () => {
+  describe('challenge one', () => {
+    it.each([
+      ['abcdef', 609_043],
+      ['pqrstuv', 1_048_970],
+    ])('%s should result in %i', (test: string, result: number) => {
+      expect(challengeOneHandler(test)).toBe(result);
+    });
+  });
+});
